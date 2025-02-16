@@ -1,0 +1,309 @@
+/* General body styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+/* Navigation Bar Styling */
+.logo {
+  width: 44px;
+  height: 44px;
+  flex-grow: 0;
+}
+/* Navbar container */
+.responsive-img {
+  width: 100%; /* Set the image width to 100% */
+  height: auto;
+  object-fit: cover; /* Prevent distortion by covering the entire container */
+}
+.navbar {
+  width: 100%;
+  background-color: #f9f9f9; /* Light background color */
+  padding: 10px 20px; /* Add spacing inside the navbar */
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Space between logo and links */
+  align-items: center; /* Vertically align items in the center */
+  border-bottom: 1px solid #ddd; /* Subtle border */
+}
+
+/* Navigation links */
+.navbar ul {
+  list-style: none; /* Remove bullets */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Arrange links in a row */
+  gap: 20px; /* Add spacing between links */
+}
+
+/* Individual list items */
+.navbar li {
+  margin: 0; /* Remove extra margins */
+}
+
+/* Navigation links styling */
+.navbar a {
+  text-decoration: none; /* Remove underline */
+  color: #fb8df9; /* Text color */
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease; /* Smooth color change */
+}
+
+.navbar a:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* CSS to make image fit the width of the page */
+
+
+
+/* Main container */
+.container {
+  width: 100%;
+  height: 100vh;
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  text-align: center;
+}
+
+/* Header */
+header {
+
+  border-radius: 12px 12px 0 0;
+  padding: 30px 20px;
+  color: #fff;
+  font-weight: bold;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin: 0;
+  color: #333;
+  font-family: 'Verdana', sans-serif;
+}
+
+/* Section headings */
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Features Section */
+.features-section {
+  background-image: url('../icons/LOLO.png'); /* Background image */
+  background-size: cover; /* Ensures the image covers the section */
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100vh; /* Full-screen height */
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* Features Container */
+.features-container {
+  width:100%;
+  height:100vh;
+  display:flex;
+  justify-content: space-around; /* Align features with equal space */
+  align-items: flex-start; /* Align icons to top of container */
+  gap: 20px; /* Space between features */
+  margin: 0 auto;
+  max-width: 1200px; /* Set a max-width for the container */
+}
+
+/* Individual Feature Item */
+.feature-item {
+  flex: 1; /* Allow items to evenly distribute space */
+  max-width: 200px;
+  text-align: center;
+}
+
+/* Feature Icon */
+.feature-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature Text */
+.feature-text {
+  font-size: 16px;
+  font-style: italic;
+  color: #333;
+  line-height: 1.5;
+}
+.upload-section {
+  width:100%;
+  background-image: url('../icons/hello.jpg'); /* Background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-container {
+  width:100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Form Elements Styling */
+.form-elements {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.form-elements label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-elements input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.upload-btn {
+  background-color: #ffb3c6; /* Pink button */
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.upload-btn:hover {
+  background-color: #ff99ae; /* Slightly darker pink on hover */
+}
+
+/* Image Preview */
+.preview-image img {
+  width: 100%;
+  max-width: 250px; /* Adjust image size */
+  height: auto;
+  border-radius: 10px;
+}
+
+
+/* Slider container */
+.slider-container {
+  margin: 30px 0;
+  background-color: #fce4ec;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.slider-container img {
+  width: 80px; /* Keep consistent sizes */
+  height: 80px;
+  object-fit: cover;
+  margin: 10px auto;
+  border: 2px solid #f8bbd0;
+  border-radius: 8px;
+}
+
+/* Sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #f8bbd0;
+  outline: none;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffb6c1;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #ff85a2;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ffb6c1;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #ff85a2;
+}
+
+/* Buttons */
+button {
+  background-color: #ff85a2;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #e57373;
+}
+
+/* Image Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid #f8bbd0;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+.footer {
+  width: 80%;
+  max-width: 800px;
+  height: auto; /* Automatically adjust height based on content */
+  margin: 45px 0 0 0; /* Add top margin, remove left margin */
+  padding: 10px 20px; /* Add padding for spacing */
+  color: #333; /* Text color for readability */
+  text-align: center; /* Center align text */
+  font-size: 14px; /* Adjust font size */
+  font-family: 'Arial', sans-serif; /* Match the font with your website theme */
+}

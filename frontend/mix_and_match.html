@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mix and Match</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Mix and Match</h1>
+  
+    <div class="slider-container">
+      <h2>Select Top</h2>
+      <input type="range" id="top-slider" min="0" max="5" value="0">
+      <img id="top-preview" src="http://localhost:3000/images/top.jpg" alt="Top Image" style="width: 300px; height: 300px;">
+    </div>
+  
+    <div class="slider-container">
+      <h2>Select Bottom</h2>
+      <input type="range" id="bottom-slider" min="0" max="5" value="0">
+      <img id="bottom-preview" src="http://localhost:3000/images/bottom.jpg" alt="Bottom Image" style="width: 300px; height: 300px;">
+    </div>
+  
+    <div class="slider-container">
+      <h2>Select Shoes</h2>
+      <input type="range" id="shoes-slider" min="0" max="5" value="0">
+      <img id="shoes-preview" src="http://localhost:3000/images/shoes.jpg" alt="Shoes Image" style="width: 300px; height: 300px;">
+    </div>
+  </div>
+  
+  
+
+  <script>
+    const images = {
+      top: [],
+      bottom: [],
+      shoes: []
+    };
+
+    // Fetch uploaded images
+    async function fetchImages() {
+      try {
+        const response = await fetch('http://localhost:3000/images');
+        const imagesList = await response.json();
+
+        // Categorize images
+        imagesList.forEach((image) => {
+          if (image.includes('top')) images.top.push(image);
+          if (image.includes('bottom')) images.bottom.push(image);
+          if (image.includes('shoes')) images.shoes.push(image);
+        });
+
+        console.log('Fetched images:', imagesList);
+
+
+        // Dynamically set slider max values and default preview
+        setSliderMaxAndPreview('top');
+        setSliderMaxAndPreview('bottom');
+        setSliderMaxAndPreview('shoes');
+      } catch (error) {
+        console.error('Error fetching images:', error);
+      }
+    }
+
+    function setSliderMaxAndPreview(category) {
+      const slider = document.getElementById(`${category}-slider`);
+      const preview = document.getElementById(`${category}-preview`);
+      const categoryImages = images[category];
+
+      if (categoryImages.length > 0) {
+        slider.max = categoryImages.length - 1;
+        preview.src = `http://localhost:3000${categoryImages[0]}`;
+      } else {
+        slider.max = 0; // No images in this category
+        preview.alt = `No ${category} images available`;
+      }
+    }
+
+    function updatePreview(category) {
+      const slider = document.getElementById(`${category}-slider`);
+      const preview = document.getElementById(`${category}-preview`);
+      const imageIndex = slider.value;
+
+      if (images[category][imageIndex]) {
+        const imageUrl = `http://localhost:3000${images[category][imageIndex]}`;
+        console.log(`Previewing ${category}:`, imageUrl);
+        preview.src = imageUrl;
+      } else {
+        console.error(`No image found for ${category} at index ${imageIndex}`);
+      }
+    }
+
+    // Attach input event listeners
+    document.getElementById('top-slider').addEventListener('input', () => updatePreview('top'));
+    document.getElementById('bottom-slider').addEventListener('input', () => updatePreview('bottom'));
+    document.getElementById('shoes-slider').addEventListener('input', () => updatePreview('shoes'));
+
+    fetchImages(); // Initialize images on page load
+  </script>
+</body>
+</html>

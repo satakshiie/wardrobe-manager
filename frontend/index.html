@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wardrobe Manager</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* CSS to make image fit the width of the page */
+    .responsive-img {
+      width: 100%; /* Set the image width to 100% */
+      height: auto; /* Maintain aspect ratio */
+      object-fit: cover; /* Prevent distortion by covering the entire container */
+    }
+    .center-text {
+      display: block; /* Ensures it's treated as a block-level element */
+      text-align: center; /* Centers the text horizontally */
+      font-size: 18px; /* Optional: Adjust font size */
+      margin: 20px 0; /* Optional: Add spacing around the text */
+      color: #000;
+    }
+    .welcome-text {
+ 
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); /* Adds shadow to text */
+  -webkit-text-stroke: 1px #000; /* Adds an outline to text */
+  font-family: Inter, sans-serif; /* Font family */
+  font-weight: normal; /* Font weight */
+  line-height: normal; /* Line height */
+  letter-spacing: normal; /* Letter spacing */
+  color: #000; /* Text color */
+}
+
+
+
+  </style>
+
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="navbar">
+      <img src="icons/logo.png" alt="Website Logo" class="logo">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="hero">
+      <img src="icons/lala.png" alt="" class="responsive-img">
+      <p class="welcome-text center-text">
+        Welcome to your ultimate outfit companion
+      </p>          
+      <u class="center-text" >Upload, mix, and match your favorite <br>pieces effortlessly while enjoying a <br>stylish, interactive experience.</br></br></u>
+      <p class="center-text">Your wardrobe, <em>just smarter</em></p>
+    </div>
+  </header>
+
+  <section class="features-section">
+    <!-- Background -->
+    <div class="features-container">
+      <!-- Individual Feature Items -->
+      <div class="feature-item">
+        <img src="icons/logo3.png" alt="Upload" class="feature-icon">
+        <p class="feature-text">upload the items <br> in your wardrobe</p>
+      </div>
+      <div class="feature-item">
+        <img src="icons/logo2.png" alt="Mix Match" class="feature-icon">
+        <p class="feature-text">mix-match <br> different <br> aesthetics</p>
+      </div>
+      <div class="feature-item">
+        <img src="icons/logoo.png" alt="Save Locally" class="feature-icon">
+        <p class="feature-text">Save outfit <br> locally for easy <br>access.</p>
+      </div>
+      <div class="feature-item">
+        <img src="icons/1.png" alt="Save Favorite" class="feature-icon">
+        <p class="feature-text">Save your <br> favourite outfit!!</p>
+      </div>
+    </div>
+  </section>
+
+   <!-- Upload Section -->
+<div class="upload-section">
+  <div class="upload-container">
+    <div class="form-elements">
+      <label for="upload-file">Upload Image:</label>
+      <input type="file" id="upload-file" onchange="previewImage(this, 'preview-image')" />
+      
+      <label for="category">Choose Category:</label>
+      <select id="category">
+        <option value="top">Top</option>
+        <option value="bottom">Bottom</option>
+        <option value="shoes">Shoes</option>
+      </select>
+ 
+      
+      <button class="upload-btn" onclick="uploadImage()">Upload</button>
+    </div>
+      <div class="preview-image">
+        <img src="icons/llll.png" alt="Uploaded Image Preview" />
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Preview Image -->
+    <div id="preview-image" class="preview-image"></div>
+  </div>
+
+
+  <br>
+  <button class="navigate-button" onclick="navigateToMixAndMatch()">Go to Mix and Match</button>
+  <br><br>
+  <img src="icons/footer.png"
+     class="footer">
+
+  <script>
+    // Function to preview uploaded images
+    function previewImage(inputElement, previewElementId) {
+      const file = inputElement.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const previewElement = document.getElementById(previewElementId);
+          previewElement.innerHTML = `<img src="${e.target.result}" alt="Preview" style="width: 100px; height: auto;">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Function to upload image to the server
+    async function uploadImage() {
+      const fileInput = document.getElementById('upload-file');
+      const categorySelect = document.getElementById('category');
+      const galleryContainer = document.getElementById('gallery-container');
+
+      const file = fileInput.files[0];
+      const category = categorySelect.value;
+
+      if (!file) {
+        alert('Please select a file!');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append('category', category);
+
+      try {
+        const response = await fetch('http://localhost:3000/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error('Upload failed');
+        }
+
+        const data = await response.json();
+        console.log('Uploaded file path:', data.filePath);
+
+        // Add uploaded image to the gallery
+        const img = document.createElement('img');
+        img.src = data.filePath;
+        img.alt = `Uploaded ${category}`;
+        img.style.width = "100px";
+        img.style.height = "auto";
+        img.style.margin = "5px";
+        galleryContainer.appendChild(img);
+
+        alert('Image uploaded successfully!');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error uploading file');
+      }
+    }
+
+    // Navigation function
+    function navigateToMixAndMatch() {
+      window.location.href = 'mix_and_match.html';
+    }
+  </script>
+</body>
+</html>
