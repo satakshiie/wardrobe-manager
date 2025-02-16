@@ -20,3 +20,7 @@ A web app to help users **organize, preview, and mix outfits** efficiently.
 📢 Contributing
 
 Pull requests are welcome!
+
+## 🌐 Deployment Status
+🚧 **Currently Not Deployed** 🚧  
+Future plans: Deploy using **Vercel, Netlify, or GitHub Pages**.
